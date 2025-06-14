@@ -1,0 +1,20 @@
+class Solution {
+    public int minMaxDifference(int num) {
+                String numStr = String.valueOf(num);
+        int maxVal = num;
+        int minVal = num;
+        for (char d1 = '0'; d1 <= '9'; d1++) {
+            for (char d2 = '0'; d2 <= '9'; d2++) {
+                if (d1 == d2) continue;
+                
+                String replaced = numStr.replace(d1, d2);
+                int newNum = Integer.parseInt(replaced);
+                maxVal = Math.max(maxVal, newNum);
+                minVal = Math.min(minVal, newNum);
+            }
+        }
+
+        return maxVal - minVal;
+
+    }
+}
