@@ -1,0 +1,31 @@
+class Solution {
+    public int minimumDeletions(String word, int k) {
+       
+        Map<Character, Integer> freq = new HashMap<>();
+        for (char ch : word.toCharArray()) {
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+        }
+ List<Integer> freqList = new ArrayList<>(freq.values());
+        int minDeletions = Integer.MAX_VALUE;
+
+    
+        for (int target = 1; target <= Collections.max(freqList); target++) {
+            int deletions = 0;
+
+            for (int f : freqList) {
+                if (f < target) {
+                    
+                    deletions += f;
+                } else if (f > target + k) {
+                   
+                    deletions += f - (target + k);
+                }
+               
+            }
+
+            minDeletions = Math.min(minDeletions, deletions);
+        }
+
+        return minDeletions; 
+    }
+}
